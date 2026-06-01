@@ -3,7 +3,7 @@ The objective of this model is to read in text and turn it into usable tokens
 """
 import re
 import os
-import nltk
+import nltk_data
 
 class CorpusReader:
     """
@@ -147,13 +147,13 @@ class TokenizerNLTK(Tokenizer):
 
     def __init__(self):
         
-        self.nltk = nltk
+        self.nltk_data = nltk_data
 
     def sent_tokenize(self, text):
-        return self.nltk.sent_tokenize(text)
+        return self.nltk_data.sent_tokenize(text)
 
     def word_tokenize(self, text):
-        return self.nltk.word_tokenize(text)
+        return self.nltk_data.word_tokenize(text)
 
 
 
