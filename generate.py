@@ -19,6 +19,8 @@ def generate_one(model, max_length):
 
         Probabilities = [model.probability((model.hashable_prefix(context)), t, 0) for t in tokens]
 
+        
+
 def demonstrate(model):
     """
     
