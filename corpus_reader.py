@@ -16,7 +16,7 @@ class CorpusReader:
         tokenizer: # TODO
         path: TODO
     """
-
+hallo
     def __init__(self, directory, tokenizer):
         """
         Initialize a CorpusReader object. This function checks that
