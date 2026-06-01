@@ -1,6 +1,7 @@
 import random
 from model import START, END
 
+
 random.seed(42)
 
 def generate_one(model, max_length):

@@ -1,7 +1,8 @@
 """
-Replace this with an explanation of the purpose of this module
+The objective of this model is to read in text and turn it into usable tokens
 """
-
+import re
+import os
 
 class CorpusReader:
     """
@@ -16,7 +17,7 @@ class CorpusReader:
         tokenizer: # TODO
         path: TODO
     """
-hallo
+
     def __init__(self, directory, tokenizer):
         """
         Initialize a CorpusReader object. This function checks that
@@ -25,7 +26,10 @@ hallo
         @param directory: str: the path to the directory of corpus files
         @param tokenizer: a Tokenizer
         """
-        ...
+        self.path = directory
+        
+        if not os.path.isdir(directory):
+            raise ValueError(directory + " does not exist or is not a directory")
 
 
     def raw(self):
@@ -33,8 +37,14 @@ hallo
         Read in the corpus files and return the results as one long string.
         @return: str
         """
-        # TODO
-        ...
+        text = ""
+
+        for filename in os.listdir(self.path):
+            if filename.endswith(".txt"):
+                full_file_path = os.path.join(self.path, filename)
+                with open(full_file_path) as conn:
+                    text += conn.read()
+        return text
 
 
     def sents(self):
@@ -43,8 +53,15 @@ hallo
         Uses the tokenizer's string2sentences method.
         @return: the corpus as a list of lists of strings
         """
-        # TODO
-        ...
+        text = ""
+
+        for filename in os.listdir(self.path):
+            if filename.endswith(".txt"):
+                full_file_path = os.path.join(self.path, filename)
+                with open(full_file_path) as conn:
+                    text += conn.read()
+
+        return self.tokenizer.string2sentences(text)
 
     def words(self):
         """
@@ -52,8 +69,15 @@ hallo
         Uses the tokenizer's word_tokenize method.
         @return: the corpus as a list of lists of strings
         """
-        # TODO
-        ...
+        text = ""
+
+        for filename in os.listdir(self.path):
+            if filename.endswith(".txt"):
+                full_file_path = os.path.join(self.path, filename)
+                with open(full_file_path) as conn:
+                    text += conn.read()
+                    
+        return self.tokenizer.word_tokenize(text)
 
 class Tokenizer:
     """
@@ -70,16 +94,22 @@ class Tokenizer:
         e.g. \"Wow!!!\" -> Wow
         e.g. can't -> can't
         """
+        clean_word = re.sub(r"^\W+|\W+$", "", word)
+        return clean_word
+               
+
 
     def sent_tokenize(self, text):
         """
         Split a text into a list of sentences.
         Split on . ? !
         Discard empty sentences.
-        @param text: # TODO
-        @return: # TODO
+        @param text: string
+        @return: list of strings
         """
-        ...
+        sentences = re.split("?<=[.?!]\s+", text)
+        return [sent for sent in sentences if sent!=""]
+
 
     def word_tokenize(self, text):
         """
@@ -87,22 +117,27 @@ class Tokenizer:
         Split on whitespace.
         use self._clean_word to remove punctuation.
         Discard empty words.
-        @param text: # TODO
-        @return: # TODO
+        @param text: string
+        @return: list of strings
         """
-        ...
+        words = text.split()
+        cleaned_words = [self._clean_word(w) for w in words]
+        return [w for w in cleaned_words if w!=""]
 
     def string2sentences(self, text):
         """
         Split a text into a list of lists of tokens.
         Uses sent_tokenize and word_tokenize.
-        @param text: # TODO
+        @param text: string
         @return: list of lists of strings (tokens).
                     Tokens may contain punctuation internally
                     (e.g. can't, uh-oh) but no other punctuation.
         """
-        # TODO
-        ...
+        tok_sents = self.sent_tokenize(text)
+        tok_list = []
+        for sent in tok_sents:
+            tok_list.append(self.word_tokenize(sent))
+        return tok_list
 
 
 if __name__ == '__main__':
