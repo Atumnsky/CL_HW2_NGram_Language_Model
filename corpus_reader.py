@@ -3,7 +3,7 @@ The objective of this model is to read in text and turn it into usable tokens
 """
 import re
 import os
-import nltk_data as nltk
+import nltk
 
 class CorpusReader:
     """
@@ -108,7 +108,7 @@ class Tokenizer:
         @param text: string
         @return: list of strings
         """
-        sentences = re.split("?<=[.?!]\s+", text)
+        sentences = re.split("(?<=[.?!])\s+", text)
         return [sent for sent in sentences if sent!=""]
 
 
