@@ -28,6 +28,7 @@ class CorpusReader:
         @param tokenizer: a Tokenizer
         """
         self.path = directory
+        self.tokenizer = tokenizer
         
         if not os.path.isdir(directory):
             raise ValueError(directory + " does not exist or is not a directory")
@@ -62,7 +63,7 @@ class CorpusReader:
                 with open(full_file_path) as conn:
                     text += conn.read()
 
-        return Tokenizer.string2sentences(text)
+        return self.tokenizer.string2sentences(text)
 
     def words(self):
         """
@@ -78,7 +79,7 @@ class CorpusReader:
                 with open(full_file_path) as conn:
                     text += conn.read()
                     
-        return Tokenizer.word_tokenize(text)
+        return self.tokenizer.word_tokenize(text)
 
 class Tokenizer:
     """
@@ -108,7 +109,7 @@ class Tokenizer:
         @param text: string
         @return: list of strings
         """
-        sentences = re.split("(?<=[.?!])\s+", text)
+        sentences = re.split(r"(?<=[.?!])\s+", text)
         return [sent for sent in sentences if sent!=""]
 
 

@@ -65,8 +65,17 @@ def test_ngram_table():
     """
     Tests the N-gram table with a tiny corpus of words and a tiny corpus of sentences
     """
+    
+
 
 def test_probability_zero():
     """
-    Tests 
+    Using your tiny model from test_ngram_table, test
+    that you get the following:
+    1. 4 parts: Raw AND smoothed probability 0 for a prefix OR successor not
+    in the model at all
+    2. For a prefix in the model and a successor that is in the model but not in
+    that prefix’s successors:
+    1. 0 raw prob
+    2. non-zero smoothed prob
     """
