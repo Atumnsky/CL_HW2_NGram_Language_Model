@@ -13,7 +13,7 @@ expected_output_plain = [
 ]
 
 expected_output_NLTK = [
-    ["Hello", ",", "this", "is", "our", "tiny", "corpus", "to", "test", "if", "our", "program", "works", "or", "if", "it", "didn't…", "."], 
+    ["Hello", ",", "this", "is", "our", "tiny", "corpus", "to", "test", "if", "our", "program", "works", "or", "if", "it", "did", "n't", "."], 
     ["n't", "to", "worry", ",", "it", "will", "definitely", "work", "!"], 
     ["But", "anyway", ",", "let", "'s", "just", "continue", "the", "assignment", "now", "and", "not", "get", "hung", "up", "on", "a", "simple", "file", "."]
 ]
