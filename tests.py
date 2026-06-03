@@ -1,5 +1,5 @@
 """
-
+Tests the tokenizers, n-gram table and probability_zero in the model
 """
 
 from corpus_reader import Tokenizer, TokenizerNLTK
