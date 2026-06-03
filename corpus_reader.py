@@ -109,7 +109,7 @@ class Tokenizer:
         @param text: string
         @return: list of strings
         """
-        sentences = re.split("(?<=[.?!])\s+", text)
+        sentences = re.split(r"(?<=[.?!])\s+", text)
         return [sent for sent in sentences if sent!=""]
 
 
