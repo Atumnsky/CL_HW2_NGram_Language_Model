@@ -82,14 +82,14 @@ def demonstrate(model):
 #Script
 if __name__ == "__main__":
     """
-    command: python generate.py data: folder n: 2
+    command: python generate.py --data folder --n 2
     instructions: python generate.py -h
     """
-    parser = argparse.ArgumentParser()
-    parser.add_argument("data: ", required=True, help="Path to data")
-    parser.add_argument("n: ", type = int, default = 2, help = "N-gram size")
-    parser.add_argument("mode: ", choices = ["sentence", "word"], help = "sentence mode for word generation, word mode for character generation")
-    parser.add_argument("tokenizer: ", choices = ["basic", "NLTK"], help = "select tokenizer: basic, NLTK")
+    parser = argparse.ArgumentParser(description="Generate text from an N-gram model. Command: python generate.py --data ./path --n 2 --mode sentence -- tokenizer basic")
+    parser.add_argument("--data", help="Path to data")
+    parser.add_argument("--n", type = int, default = 2, help = "N-gram size")
+    parser.add_argument("--mode", choices = ["sentence", "word"],default="sentence", help = "sentence mode for word generation, word mode for character generation")
+    parser.add_argument("--tokenizer", choices = ["basic", "NLTK"],default="basic", help = "select tokenizer: basic, NLTK")
 
     args = parser.parse_args()
 

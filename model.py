@@ -14,16 +14,16 @@ END = "</s>"
 
 class NGramModel:
     """
-    YUEPENG Describe the class -
+     Describe the class -
     An n-gram language model that extimates probabilities of words (or characters) based on the previous n - 1 tokens
 
     Attributes:
         n : int: size of ngrams
-        mode : str : # YUEPENG describe -   'sentence' for word generation in a sentence
+        mode : str : #  describe -   'sentence' for word generation in a sentence
                                             'word' for character generatoion in a word
-        ngram_table : dict # YUEPENG describe - mapping prefixes to a dict of successors with their counts
-        successors : set # YUEPENG describe - all tokens that ever appear as successors
-        V : int: # YUEPENG describe - size of the successor vocab, len(successors)
+        ngram_table : dict #  describe - mapping prefixes to a dict of successors with their counts
+        successors : set #  describe - all tokens that ever appear as successors
+        V : int: #  describe - size of the successor vocab, len(successors)
     """
 
     def __init__(self, data, n, tokenizer: Tokenizer, mode="sentence"):
@@ -34,26 +34,24 @@ class NGramModel:
                      if word: use ngrams of letters to make words
         """
         # Mode: Whether we're making sentences from words or words from characters
-        # YUEPENG raise an informative ValueError if mode is neither "sentence" nor "word"
-        if mode != "sentence":
-            raise ValueError ('Mode of the NGramModel is incorrect, please use mode="sentence" or mode="word"')
-        elif mode != "word":
-            raise ValueError ('Mode of the NGramModel is incorrect, please use mode="sentence" or mode="word"')
+        #  raise an informative ValueError if mode is neither "sentence" nor "word"
+        if mode not in ("sentence", "word"):
+            raise ValueError('Mode most be "sentence" or "word')
         
-        # YUEPENG otherwise, store mode in self.mode
-        # YUEPENG define self.n
-        # YUEPENG define self.tokenizer
-        else:
-            self.mode = mode
-            self.n = n
-            self.tokenizer = tokenizer
+        #  otherwise, store mode in self.mode
+        #  define self.n
+        #  define self.tokenizer
+        self.mode = mode
+        self.n = n
+        self.tokenizer = tokenizer
+            
 
-        # YUEPENG use the data to create self.ngram_table (dict), self.successors (set), and self.V (int)
+        #  use the data to create self.ngram_table (dict), self.successors (set), and self.V (int)
         self.ngram_table = {}
         self.successors = set()
 
         for item in data:
-            tokens = self.preprocess(item) #lowercase and add START, END (list of strings)
+            tokens = self.preprocess(item) 
 
             for i in range(len(tokens) - n+1):
                 prefix_list = tokens[i : i + n-1]
@@ -64,8 +62,10 @@ class NGramModel:
                     self.ngram_table[prefix] = {}
                 self.ngram_table[prefix][successor] = self.ngram_table[prefix].get(successor, 0)+1
 
-                self.successors.add(END)
-                self.V = len(self.successors)
+                self.successors.add(successor)
+
+        self.successors.add(END)
+        self.V = len(self.successors)
 
 
 
@@ -113,14 +113,14 @@ class NGramModel:
         Preprocesses a single data point:
             - make all characters lowercase
             - if in word mode, make item into a list of its characters
-            - #YUEPENG Add n-1 START tokens and 1 END tokens
+            - # Add n-1 START tokens and 1 END tokens
 
         @param item: string (word mode) or list of strings (sentence mode)
         @return list of strings
         """
         if self.mode == 'word':
             item = item.lower()
-            token = list(item)
+            tokens = list(item)
         elif self.mode == 'sentence':
             tokens = [word.lower() for word in item]
         
@@ -137,7 +137,7 @@ class NGramModel:
         Usage: e.g. to calculate the probability of the trigram "we love linguistics" without smoothing:
             probablility(("we", "love"), "linguistics")
         Returns 0 for unknown words and unknown prefixes.
-        @return YUEPENG float probability
+        @return  float probability
         """
         succ_dict = self.ngram_table.get(prefix, {})
         prefix_count = sum(succ_dict.values())
@@ -157,7 +157,7 @@ class NGramModel:
         Applies the appropriate tokenisation and calls the perplexity method on each word or sentence.
         @param corpus: one or more words or sentences as a single string
         @param smoothing_constant: for LaPlace smoothing. Default 0 (no smoothing)
-        @return: YUEPENG perplexity for each sentence/word (list of float)
+        @return:  perplexity for each sentence/word (list of float)
         """
         if self.mode == 'sentence':
             items = self.tokenizer.string2sentences(corpus)
@@ -175,7 +175,7 @@ class NGramModel:
             Use corpus_perplexity for untokenised items.
         @param item: str: a word (word mode) or a sentence as a single string (sentence mode)
         @param smoothing_constant: for LaPlace smoothing. Default 0 (no smoothing)
-        @return: YUEPENG perplexity of the item (float)
+        @return:  perplexity of the item (float)
 
         ### LOWER PERPLEXITY == BETTER MODEL
         """ 
@@ -213,7 +213,7 @@ class NGramModel:
         prefix = self.hashable_prefix(prefix)
         # find all successors of the prefix, and their counts
         inner_dict = self.ngram_table.get(prefix,{})
-        successor_count_pairs = inner_dict.items()  # YUEPENG
+        successor_count_pairs = inner_dict.items()  # 
         # return the successors and counts, most common first.
         return sorted(successor_count_pairs, key=lambda x: x[1], reverse=True)
 
