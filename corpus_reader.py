@@ -15,8 +15,8 @@ class CorpusReader:
     rdr = CorpusReader(r"path/to/dir")
 
     Attributes:
-        tokenizer: # TODO
-        path: TODO
+        tokenizer: a Tokenizer
+        path: The path to the directory of corpus files
     """
 
     def __init__(self, directory, tokenizer):
