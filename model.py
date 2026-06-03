@@ -19,11 +19,11 @@ class NGramModel:
 
     Attributes:
         n : int: size of ngrams
-        mode : str : #  describe -   'sentence' for word generation in a sentence
+        mode : str : #'sentence' for word generation in a sentence
                                             'word' for character generatoion in a word
-        ngram_table : dict #  describe - mapping prefixes to a dict of successors with their counts
-        successors : set #  describe - all tokens that ever appear as successors
-        V : int: #  describe - size of the successor vocab, len(successors)
+        ngram_table : dict # mapping prefixes to a dict of successors with their counts
+        successors : set # all tokens that ever appear as successors
+        V : int: # size of the successor vocab, len(successors)
     """
 
     def __init__(self, data, n, tokenizer: Tokenizer, mode="sentence"):
@@ -82,30 +82,6 @@ class NGramModel:
         ret += "\n-------------------"
 
         return ret
-################################################################################################
-    # OPTIONAL
-    def get_ith_ngram(self, clean_item, i):
-        """
-        Helper function to get a single ngram
-            from a cleaned list of words or characters.
-        Optional -- delete if not wanted.
-        Applies self.hashable_prefix so the prefix can be a key in self.ngram_table.
-        @param clean_item: list of strings
-        @param i: int
-        @return: pair (prefix as str or Tuple, successor str)
-        """
-        prefix_sublist = ...  # TODO
-        prefix = self.hashable_prefix(prefix_sublist)
-        successor = ... # TODO
-        return prefix, successor
-
-    # OPTIONAL
-    def number_of_ngrams(self, clean_item):
-        """
-        Helper function (optional -- delete if unwanted)
-        """
-        ...
-################################################################################################
 
     # REQUIRED
     def preprocess(self, item):
