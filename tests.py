@@ -1,3 +1,7 @@
+"""
+
+"""
+
 import corpus_reader
 import model
 import generate
@@ -59,10 +63,10 @@ if __name__ == "__main__":
 
 def test_ngram_table():
     """
-
+    Tests the N-gram table with a tiny corpus of words and a tiny corpus of sentences
     """
 
 def test_probability_zero():
     """
-    
+    Tests 
     """

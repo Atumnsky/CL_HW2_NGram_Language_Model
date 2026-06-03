@@ -1,3 +1,10 @@
+"""
+This module defines a class NGramModel that builds an ngram table from the
+sentences or words of a corpus. It can also calculate the perplexity of a given
+string, and generate sample strings from the model.
+"""
+
+
 from corpus_reader import Tokenizer
 import math
 
