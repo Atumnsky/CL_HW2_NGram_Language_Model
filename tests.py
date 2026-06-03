@@ -95,7 +95,7 @@ def test_ngram_table():
         ("o", "g"):     {"</s>": 1}
     }
 
-    if ngram_w != expected_ngram_s:
+    if ngram_w.ngram_table != expected_ngram_w:
         print("TEST FAILED: N-gram table -word mode")
     else:
         print("TEST PASSED: N-gram table -word mode")
