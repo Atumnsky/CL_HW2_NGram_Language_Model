@@ -7,15 +7,15 @@ from model import START, END , NGramModel
 
 
 expected_output_plain = [
-    ['Hello', 'this', 'is', 'our', 'tiny', 'corpus', 'to', 'test', 'if', 'our', 'program', 'works', 'or', 'if', 'it', "didn’t"],
-    ['n’t', 'to', 'worry', 'it', 'will', 'definitely', 'work'], 
-    ['But', 'anyway', 'let’s', 'just', 'continue', 'the', 'assignment', 'now', 'and', 'not', 'get', 'hung', 'up', 'on', 'a', 'simple', 'file']
+    ["Hello", "this", "is", "our", "tiny", "corpus", "to", "test", "if", "our", "program", "works", "or", "if", "it", "didn't"],
+    ["n't", "to", "worry", "it", "will", "definitely", "work"],
+    ["But", "anyway", "let's", "just", "continue", "the", "assignment", "now", "and", "not", "get", "hung", "up", "on", "a", "simple", "file"]
 ]
 
 expected_output_NLTK = [
-    ['Hello', ',', 'this', 'is', 'our', 'tiny', 'corpus', 'to', 'test', 'if', 'our', 'program', 'works', 'or', 'if', 'it', 'didn','’','t…', '.'], 
-    ['n','’','t', 'to', 'worry', ',', 'it', 'will', 'definitely', 'work', '!'], 
-    ['But', 'anyway', ',', 'let', '’', 's', 'just', 'continue', 'the', 'assignment', 'now', 'and', 'not', 'get', 'hung', 'up', 'on', 'a', 'simple', 'file', '.']
+    ["Hello", ",", "this", "is", "our", "tiny", "corpus", "to", "test", "if", "our", "program", "works", "or", "if", "it", "didn't…", "."], 
+    ["n't", "to", "worry", ",", "it", "will", "definitely", "work", "!"], 
+    ["But", "anyway", ",", "let", "'s", "just", "continue", "the", "assignment", "now", "and", "not", "get", "hung", "up", "on", "a", "simple", "file", "."]
 ]
 
 def test_tokenizer_plain(text):
