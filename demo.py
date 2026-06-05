@@ -37,15 +37,28 @@ for n in [2,3,4]:
 12 N-gram models from gutenberg
 """
 
+tok_gutenberg = corpus_reader.TokenizerNLTK()
+
 print("---N-gram models trained from Gutenberg---")
 for n in [2,3,4]:
     for mode in ["sentence", "word"]:
-        for tok in [(tok_plain),(tok_nltk)]:
-            if mode == "sentence":
-                data2 = gutenberg.sents()
-            else:
-                data2 = gutenberg.words()
+        if mode == "sentence":
+            data_gut = gutenberg.sents()
+        else:
+            data_gut = gutenberg.words()
+            
+        model_gut = model.NGramModel(data_gut, n, tok_gutenberg, mode=mode)
+        
+        print("Gutenberg's own sents() and words()")
+        generate.demonstrate(model_gut)
 
-            ngram_model2 = model.NGramModel(data2, n, tok, mode = mode)
+        gut_text = gutenberg.raw()
+        if mode == "sentence":
+            data_raw = tok_gutenberg.string2sentences(gut_text)
+        else:
+            data_raw = tok_gutenberg.word_tokenize(gut_text)
+        
+        model_raw = model.NGramModel(data_raw, n, tok_gutenberg, mode = mode)
 
-            generate.demonstrate(ngram_model2)
+        print("Gutenberg raw with own tokenizer")
+        generate.demonstrate(model_raw)
