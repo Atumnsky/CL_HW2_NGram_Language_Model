@@ -153,7 +153,6 @@ class NGramModel:
         @param smoothing_constant: for LaPlace smoothing. Default 0 (no smoothing)
         @return:  perplexity of the item (float)
 
-        ### LOWER PERPLEXITY == BETTER MODEL
         """ 
         # Recommendation: work in log space
         # to avoid floating point errors due to very small probabilities.
@@ -168,7 +167,7 @@ class NGramModel:
             P = self.probability(prefix, successors, smoothing_constant)
 
             if P == 0:
-                return float('inf') #log(0) = inf
+                return float('inf')
             
             total_log_prob += math.log(P)
             N += 1

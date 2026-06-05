@@ -20,7 +20,7 @@ reader_nltk = corpus_reader.CorpusReader(train_path, tok_nltk)
 12 N-gram models from train.zip
 """
 print("---N-gram models trained from ./train---")
-for n in [1,2,3]:
+for n in [2,3,4]:
     for mode in ["sentence", "word"]:
         for tok, reader in [(tok_plain, reader_plain),(tok_nltk, reader_nltk)]:
             if mode == "sentence":
@@ -38,7 +38,7 @@ for n in [1,2,3]:
 """
 
 print("---N-gram models trained from Gutenberg---")
-for n in [1,2,3]:
+for n in [2,3,4]:
     for mode in ["sentence", "word"]:
         for tok in [(tok_plain),(tok_nltk)]:
             if mode == "sentence":
