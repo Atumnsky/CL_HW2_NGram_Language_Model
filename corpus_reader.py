@@ -87,6 +87,7 @@ class Tokenizer:
     """
 
     def __init__(self):
+        '''No initialization needed for this tokenizer'''
         pass
 
     def _clean_word(self, word):
@@ -147,13 +148,16 @@ class TokenizerNLTK(Tokenizer):
     """
 
     def __init__(self):
-        
+        '''Initializes a TokenizerNLTK object using nltk's tokenizers'''
         self.nltk = nltk
 
     def sent_tokenize(self, text):
+        '''Splits a text into a list of sentences using nltk's sent_tokenize'''
         return self.nltk.sent_tokenize(text)
 
     def word_tokenize(self, text):
+        '''Splits a text into a list of words using nltk's word_tokenize.
+        Discards empty tokens and tokens that are only punctuation.'''
         words = self.nltk.word_tokenize(text)
         return [w for w in words if w != "" and not re.fullmatch(r"^\W+$", w )]
 
