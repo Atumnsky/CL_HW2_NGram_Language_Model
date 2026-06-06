@@ -13,9 +13,9 @@ expected_output_plain = [
 ]
 
 expected_output_NLTK = [
-    ["Hello", ",", "this", "is", "our", "tiny", "corpus", "to", "test", "if", "our", "program", "works", "or", "if", "it", "did", "n't", "."], 
-    ["n't", "to", "worry", ",", "it", "will", "definitely", "work", "!"], 
-    ["But", "anyway", ",", "let", "'s", "just", "continue", "the", "assignment", "now", "and", "not", "get", "hung", "up", "on", "a", "simple", "file", "."]
+    ["Hello", "this", "is", "our", "tiny", "corpus", "to", "test", "if", "our", "program", "works", "or", "if", "it", "did", "n't"],
+    ["n't", "to", "worry", "it", "will", "definitely", "work"],
+    ["But", "anyway", "let", "'s", "just", "continue", "the", "assignment", "now", "and", "not", "get", "hung", "up", "on", "a", "simple", "file"]
 ]
 
 def test_tokenizer_plain(text):
@@ -37,7 +37,7 @@ def test_tokenizer_plain(text):
 
     return same_output
 
-def test_tokenizer_nltk(text):
+def test_tokenize_nltk(text):
     """
     Test the NLTK tokenizer with a given text file.
     """
@@ -165,7 +165,7 @@ def test_probability_zero():
 if __name__ == "__main__":
     print("--- STARTING TOKENIZER TESTS ---")
     test_tokenizer_plain("tiny_corpus.txt")
-    test_tokenizer_nltk("tiny_corpus.txt")
+    test_tokenize_nltk("tiny_corpus.txt")
 
     print("---STARTING MODEL TESTS---")
     test_ngram_table()

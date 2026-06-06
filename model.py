@@ -36,7 +36,7 @@ class NGramModel:
         # Mode: Whether we're making sentences from words or words from characters
         #  raise an informative ValueError if mode is neither "sentence" nor "word"
         if mode not in ("sentence", "word"):
-            raise ValueError('Mode most be "sentence" or "word')
+            raise ValueError('Mode must be "sentence" or "word')
         
         #  otherwise, store mode in self.mode
         #  define self.n

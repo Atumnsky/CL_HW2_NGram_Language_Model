@@ -154,7 +154,8 @@ class TokenizerNLTK(Tokenizer):
         return self.nltk.sent_tokenize(text)
 
     def word_tokenize(self, text):
-        return self.nltk.word_tokenize(text)
+        words = self.nltk.word_tokenize(text)
+        return [w for w in words if w != "" and not re.fullmatch(r"^\W+$", w )]
 
 
 
